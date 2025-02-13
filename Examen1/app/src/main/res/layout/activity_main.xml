@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondoBlanco"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/bordeGris"
+        android:textColor="@color/AzulOscuro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrecio">
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Producto"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Cantidad"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Precio"
+                android:textStyle="bold" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvProducto1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/tvCantidad1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/tvPrecio1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvProducto2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/tvCantidad2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/tvPrecio2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvProducto3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/tvCantidad3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/tvPrecio3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="8dp"
+                android:text="Sub-total"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSubTotal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="8dp"
+                android:text="IVA (16%)"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvIva"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="8dp"
+                android:text="Total"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="8dp" />
+        </TableRow>
+
+    </TableLayout>
+
+
+    <EditText
+        android:id="@+id/tvCantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="199dp"
+        android:ems="10"
+        android:hint="Cantidad"
+        android:textColor="@color/AzulOscuro"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tvProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Producto"
+        android:inputType="text"
+        android:textColor="@color/AzulOscuro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCantidad" />
+
+    <EditText
+        android:id="@+id/tvPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Precio"
+        android:textColor="@color/AzulOscuro"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProducto" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
