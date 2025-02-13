@@ -17,25 +17,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvCantidad1: TextView
     private lateinit var tvPrecio1: TextView
 
-    private lateinit var tvProducto2: TextView
-    private lateinit var tvCantidad2: TextView
-    private lateinit var tvPrecio2: TextView
-
-    private lateinit var tvProducto3: TextView
-    private lateinit var tvCantidad3: TextView
-    private lateinit var tvPrecio3: TextView
-
     private lateinit var tvSubTotal: TextView
     private lateinit var tvIva: TextView
     private lateinit var tvTotal: TextView
 
-    private val productos = mutableListOf<Triple<String, Int, Double>>()
+    private var cantidad: Int = 0
+    private var precio: Double = 0.0
+    private var subTotal: Double = 0.0
     private val ivaRate = 0.16
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Inicializar componentes
         etCantidad = findViewById(R.id.tvCantidad)
         etProducto = findViewById(R.id.tvProducto)
         etPrecio = findViewById(R.id.tvPrecio)
@@ -44,18 +39,11 @@ class MainActivity : AppCompatActivity() {
         tvCantidad1 = findViewById(R.id.tvCantidad1)
         tvPrecio1 = findViewById(R.id.tvPrecio1)
 
-        tvProducto2 = findViewById(R.id.tvProducto2)
-        tvCantidad2 = findViewById(R.id.tvCantidad2)
-        tvPrecio2 = findViewById(R.id.tvPrecio2)
-
-        tvProducto3 = findViewById(R.id.tvProducto3)
-        tvCantidad3 = findViewById(R.id.tvCantidad3)
-        tvPrecio3 = findViewById(R.id.tvPrecio3)
-
         tvSubTotal = findViewById(R.id.tvSubTotal)
         tvIva = findViewById(R.id.tvIva)
         tvTotal = findViewById(R.id.tvTotal)
 
+        // Agregar TextWatchers para actualizar en tiempo real
         etCantidad.addTextChangedListener(textWatcher)
         etProducto.addTextChangedListener(textWatcher)
         etPrecio.addTextChangedListener(textWatcher)
@@ -65,58 +53,25 @@ class MainActivity : AppCompatActivity() {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            agregarProducto()
+            actualizarTabla()
         }
 
         override fun afterTextChanged(s: Editable?) {}
     }
 
-    private fun agregarProducto() {
+    private fun actualizarTabla() {
         val cantidadStr = etCantidad.text.toString()
         val precioStr = etPrecio.text.toString()
         val productoStr = etProducto.text.toString()
 
-        if (cantidadStr.isNotEmpty() && precioStr.isNotEmpty() && productoStr.isNotEmpty()) {
-            val cantidad = cantidadStr.toInt()
-            val precio = precioStr.toDouble()
+        cantidad = if (cantidadStr.isNotEmpty()) cantidadStr.toInt() else 0
+        precio = if (precioStr.isNotEmpty()) precioStr.toDouble() else 0.0
 
-            if (productos.size < 3) {
-                productos.add(Triple(productoStr, cantidad, precio))
-            } else {
-                productos[0] = productos[1]
-                productos[1] = productos[2]
-                productos[2] = Triple(productoStr, cantidad, precio)
-            }
+        tvProducto1.text = productoStr
+        tvCantidad1.text = cantidad.toString()
+        tvPrecio1.text = String.format("%.2f", cantidad * precio)
 
-            actualizarTabla()
-        }
-    }
-
-    private fun actualizarTabla() {
-        var subTotal = 0.0
-
-        val filas = listOf(
-            Triple(tvProducto1, tvCantidad1, tvPrecio1),
-            Triple(tvProducto2, tvCantidad2, tvPrecio2),
-            Triple(tvProducto3, tvCantidad3, tvPrecio3)
-        )
-
-
-        for (fila in filas) {
-            fila.first.text = ""
-            fila.second.text = ""
-            fila.third.text = ""
-        }
-
-        for (i in productos.indices) {
-            val (producto, cantidad, precio) = productos[i]
-            filas[i].first.text = producto
-            filas[i].second.text = cantidad.toString()
-            filas[i].third.text = String.format("%.2f", cantidad * precio)
-
-            subTotal += cantidad * precio
-        }
-
+        subTotal = cantidad * precio
         val iva = subTotal * ivaRate
         val total = subTotal + iva
 
